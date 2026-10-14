@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f676"
+  },
+  "nombre": "Diego Fernando",
+  "apellido": "Prado Osorio",
+  "correo_institucional": "diego.prado@uniautonoma.edu.co",
+  "telefono": "3001234567",
+  "rol": "docente",
+  "estado": true,
+  "perfil_docente": {
+    "escalafon": "Asociado",
+    "departamento_facultad": "Facultad de Ingenieria",
+    "horarios_asesoria": [
+      {
+        "dia_semana": "Lunes",
+        "hora_inicio": "14:00",
+        "hora_fin": "16:00",
+        "lugar": "Salon 302"
+      }
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f677"
+  },
+  "nombre": "Zulema Yidney",
+  "apellido": "León Escobar",
+  "correo_institucional": "zulema.leon@uniautonoma.edu.co",
+  "telefono": "3119876543",
+  "rol": "docente",
+  "estado": true,
+  "perfil_docente": {
+    "escalafon": "Titular",
+    "departamento_facultad": "Facultad de ingenieria",
+    "horarios_asesoria": [
+      {
+        "dia_semana": "Miercoles",
+        "hora_inicio": "08:00",
+        "hora_fin": "10:00",
+        "lugar": "EmprendeLab"
+      }
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f678"
+  },
+  "nombre": "Miguel Angel",
+  "apellido": "Sandoval Joaqui",
+  "correo_institucional": "miguel.sandoval@uniautonoma.edu.co",
+  "telefono": "3155551234",
+  "rol": "estudiante",
+  "estado": true,
+  "perfil_estudiante": {
+    "codigo_estudiantil": "20261001",
+    "programa_academico": "Ingenieria de software",
+    "semestre_actual": 7,
+    "intereses_investigacion": [
+      "Bases de datos",
+      "Desarrollo de aplicaciones moviles",
+      "Estructura de datos"
+    ]
+  }
+},
+{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f679"
+  },
+  "nombre": "Brayan Stivens",
+  "apellido": "Banguero",
+  "correo_institucional": "brayan.banguero@uniautonoma.edu.co",
+  "telefono": "3166665678",
+  "rol": "estudiante",
+  "estado": true,
+  "perfil_estudiante": {
+    "codigo_estudiantil": "20261002",
+    "programa_academico": "Ingeniería de software",
+    "semestre_actual": 7,
+    "intereses_investigacion": [
+      "Backend",
+      "MongoDB",
+      "Kotlin"
+    ]
+  }
+}]

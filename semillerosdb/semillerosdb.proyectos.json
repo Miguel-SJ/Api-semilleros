@@ -1,0 +1,99 @@
+[{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f67b"
+  },
+  "titulo": "Sistema de control de inhabilitaciones en torneos",
+  "descripcion_general": "Validar en tiempo real las alineaciones en partidos de futbol",
+  "objetivos": [
+    "Evitar alineaciones indebidas",
+    "Historial de tarjetas"
+  ],
+  "fecha_inicio": {
+    "$date": "2026-08-01T00:00:00.000Z"
+  },
+  "estado": "En ejecucion",
+  "tipo_proyecto": "Investigacion aplicada",
+  "id_docente_asesor": {
+    "$oid": "6acf126da4628cf15375f676"
+  },
+  "integrantes_participacion": [
+    {
+      "id_usuario": {
+        "$oid": "6acf126da4628cf15375f678"
+      },
+      "rol_en_proyecto": "Líder de desarrollo",
+      "participacion": true
+    }
+  ],
+  "articulacion_interdisciplinar": {
+    "semilleros_involucrados": [
+      {
+        "$oid": "6acf126da4628cf15375f67a"
+      }
+    ],
+    "descripcion_colaboracion": "Módulo de API REST con MongoDB"
+  }
+},
+{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f67c"
+  },
+  "titulo": "Gestor de reservas de equipamiento universitario",
+  "descripcion_general": "App movil para apartacion de mesas de ping pong y prestamos de raquetas",
+  "objetivos": [
+    "Optimizar prestamos",
+    "Digitalizar la gestion"
+  ],
+  "fecha_inicio": {
+    "$date": "2026-09-01T00:00:00.000Z"
+  },
+  "estado": "En propuesta",
+  "tipo_proyecto": "Desarrollo tecnologico",
+  "id_docente_asesor": {
+    "$oid": "6acf126da4628cf15375f676"
+  },
+  "integrantes_participacion": [
+    {
+      "id_usuario": {
+        "$oid": "6acf126da4628cf15375f678"
+      },
+      "rol_en_proyecto": "Desarrollador backend",
+      "participacion": true
+    },
+    {
+      "id_usuario": {
+        "$oid": "6acf126da4628cf15375f679"
+      },
+      "rol_en_proyecto": "Desarrollador android",
+      "participacion": true
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f67d"
+  },
+  "titulo": "Plataforma de comprension lectora caña dulce",
+  "descripcion_general": "Gamificación con estrellas e insignias para primaria",
+  "objetivos": [
+    "Mejorar niveles de lectura",
+    "Gamificar retos"
+  ],
+  "fecha_inicio": {
+    "$date": "2026-07-15T00:00:00.000Z"
+  },
+  "estado": "En ejecucion",
+  "tipo_proyecto": "Innovacion educativa",
+  "id_docente_asesor": {
+    "$oid": "6acf126da4628cf15375f677"
+  },
+  "integrantes_participacion": [
+    {
+      "id_usuario": {
+        "$oid": "6acf126da4628cf15375f679"
+      },
+      "rol_en_proyecto": "Investigador principal",
+      "participacion": true
+    }
+  ]
+}]

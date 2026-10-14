@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f67e"
+  },
+  "titulo": "Taller practico de Node.js y MongoDB",
+  "contenido": "Capacitacion sobre el modelado de datos no relacionales y construcción de endpoints REST",
+  "tipo": "capacitacion",
+  "visibilidad_publica": true,
+  "id_semillero_organizador": {
+    "$oid": "6acf126da4628cf15375f67a"
+  },
+  "detalles_capacitacion": {
+    "tematica": "Bases de datos avanzadas",
+    "instructor": "Diego Fernando Prado Osorio",
+    "fecha_hora_inicio": {
+      "$date": "2026-10-20T14:00:00.000Z"
+    },
+    "fecha_hora_fin": {
+      "$date": "2026-10-20T17:00:00.000Z"
+    },
+    "enlace_reunion_lugar": "Auditorio la quimera",
+    "cupo_maximo": 30,
+    "inscritos": [
+      {
+        "$oid": "6acf126da4628cf15375f678"
+      }
+    ]
+  }
+}]

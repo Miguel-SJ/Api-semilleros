@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "6acf126da4628cf15375f67a"
+  },
+  "nombre": "Semillero desarrollo movil y gemini",
+  "facultad": "Facultad de ingenieria",
+  "estado": true,
+  "id_docente_lider": {
+    "$oid": "6acf126da4628cf15375f676"
+  },
+  "area_estudiada": {
+    "nombre": "Ingeniería de software",
+    "descripcion": "Diseño de arquitecturas escalables y aplicaciones moviles"
+  },
+  "lineas_investigacion": [
+    {
+      "nombre": "Moviles",
+      "descripcion": "Android Kotlin y Jetpack Compose"
+    },
+    {
+      "nombre": "Cloud API",
+      "descripcion": "APIs REST en Node.js y MongoDB"
+    }
+  ]
+}]
