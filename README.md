@@ -1,6 +1,6 @@
-## Historias de Usuario
+## Historias de usuario
 
-| N.º | Historia de Usuario | Funcionalidad | Endpoint y Método HTTP | Resultado Esperado |
+| N.º | Historia de usuario | Funcionalidad | Endpoint y http | Resultado |
 | :---: | :--- | :--- | :--- | :--- |
 | **1** | **HU #0001:** Registrar estudiante | Crear usuario estudiante con perfil académico | `POST /api/usuarios/estudiantes` | `201 Created` con el JSON del estudiante creado y su `_id` |
 | **2** | **HU #0002:** Registrar docente | Crear usuario docente con horarios de asesoría | `POST /api/usuarios/docentes` | `201 Created` con la información del docente persistida |
