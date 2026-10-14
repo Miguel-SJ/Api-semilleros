@@ -3,7 +3,7 @@
 | N.º | Historia de usuario | Funcionalidad | Endpoint y http | Resultado |
 | :---: | :--- | :--- | :--- | :--- |
 | **1** | **HU #0001:** Registrar estudiante | Crear usuario estudiante validando campos obligatorios | `POST /api/usuarios/estudiantes` | `201 Created` al guardar o `400 Bad Request` si faltan datos obligatorios |
-| **2** | **HU #0002:** Registrar docente | Crear usuario docente con horarios de atención | `POST /api/usuarios/docentes` | `201 Created` con la información del docente persistida en MongoDB |
+| **2** | **HU #0002:** Registrar docente | Crear usuario docente con horarios de atención | `POST /api/usuarios/docentes` | `201 Created` con la información del docente |
 | **3** | **HU #0003:** Crear semillero | Registrar grupo asociado al área y sus líneas de investigación | `POST /api/semilleros` | `201 Created` con los datos del semillero registrado |
 | **4** | **HU #0004:** Editar semillero | Modificar datos e información general del semillero | `PUT /api/semilleros/:id` | `200 OK` con el documento actualizado o `404 Not Found` si el `_id` no existe |
 | **5** | **HU #0005:** Cambiar docente líder | Actualizar el docente líder asignado a un semillero | `PATCH /api/semilleros/:id/cambiar-lider` | `200 OK` al actualizar o `400 Bad Request` si el usuario no tiene rol docente |
