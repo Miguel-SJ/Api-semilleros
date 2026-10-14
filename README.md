@@ -11,4 +11,4 @@
 | **7** | **HU #0007:** Registrar proyecto | Registrar proyecto validando la existencia de integrantes | `POST /api/proyectos` | `201 Created` al registrar o `400 Bad Request` si un integrante no existe |
 | **8** | **HU #0008:** Publicar capacitación | Publicar evento de capacitación vinculado a un semillero | `POST /api/publicaciones` | `201 Created` con la publicación registrada en la base de datos |
 | **9** | **HU #0009:** Inscribir estudiante | Agregar estudiante al arreglo de inscritos de un evento | `PUT /api/publicaciones/:id/inscribir` | `200 OK` ($push), `404 Not Found` si no existe o `409 Conflict` por cupo |
-| **10**| **HU #0010:** Reporte carga docente | Generar reporte con la cantidad de proyectos por asesor | `GET /api/reportes/carga-docentes` | `200 OK` con el ranking ($group,$sum) o `404 Not Found` si no hay datos |
+| **10**| **HU #0010:** Reporte proyectos docente | Generar reporte con la cantidad de proyectos por asesor | `GET /api/reportes/carga-docentes` | `200 OK` con el ranking ($group,$sum) o `404 Not Found` si no hay datos |
