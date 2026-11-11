@@ -32,40 +32,50 @@ const controller = {
   },
 
   inscribirEstudiante: function (req, res) {
-    let publicacionId = req.params.id
-    const { id_usuario } = req.body
+    let publicacionId = req.params.id;
+
+    // 1. EXTRAER ID DEL TOKEN JWT (Recomendación del profesor)
+    // El authMiddleware suele guardar los datos del token en req.usuario o req.user
+    let id_usuario = null;
+    if (req.usuario && req.usuario.id) {
+        id_usuario = req.usuario.id;
+    } else if (req.user && req.user.id) {
+        id_usuario = req.user.id;
+    } else {
+        // Respaldo de compatibilidad por si el token falla pero el body trae el ID
+        id_usuario = req.body.id_usuario || req.body.id_estudiante;
+    }
 
     if (!id_usuario) {
-      return res.status(400).send({ message: "El id_usuario es obligatorio" })
+      return res.status(400).send({ message: "El id_usuario es obligatorio o el token es inválido" });
     }
 
     Publicacion.findById(publicacionId)
       .then(pub => {
-        if (!pub) return res.status(404).send({ message: "Evento o capacitación no encontrada" })
+        if (!pub) return res.status(404).send({ message: "Evento o capacitación no encontrada" });
 
-        let inscritos = pub.detalles_capacitacion.inscritos || []
-        let cupoMaximo = pub.detalles_capacitacion.cupo_maximo
+        let inscritos = pub.detalles_capacitacion.inscritos || [];
+        let cupoMaximo = pub.detalles_capacitacion.cupo_maximo;
 
         if (inscritos.some(id => id.toString() === id_usuario)) {
-          return res.status(400).send({ message: "El estudiante ya se encuentra inscrito en este evento" })
+          return res.status(400).send({ message: "El estudiante ya se encuentra inscrito en este evento" });
         }
 
         if (cupoMaximo && inscritos.length >= cupoMaximo) {
-          return res.status(409).send({ message: "Cupo máximo alcanzado para esta capacitación" })
+          return res.status(409).send({ message: "Cupo máximo alcanzado para esta capacitación" });
         }
 
-        pub.detalles_capacitacion.inscritos.push(id_usuario)
-        return pub.save()
+        pub.detalles_capacitacion.inscritos.push(id_usuario);
+        return pub.save();
       })
       .then(updatedPub => {
-        if (!updatedPub) return
+        if (!updatedPub) return;
         return res.status(200).json({
           message: "Inscripción realizada exitosamente",
           publicacion: updatedPub
-        })
+        });
       })
-      .catch(err => res.status(500).send({ message: `Error procesando la inscripción: ${err}` }))
+      .catch(err => res.status(500).send({ message: `Error procesando la inscripción: ${err}` }));
   }
 }
-
 module.exports = controller
