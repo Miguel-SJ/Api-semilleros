@@ -3,7 +3,8 @@ const UsuarioController = require('../controllers/usuario')
 
 const router = Router()
 
-router.post('/estudiantes', UsuarioController.registrarEstudiante)
-router.post('/docentes', UsuarioController.registrarDocente)
+router.post('/estudiante', UsuarioController.registrarEstudiante)
+router.post('/docente', UsuarioController.registrarDocente)
+router.post('/login', UsuarioController.login)
 
 module.exports = router

@@ -1,13 +1,10 @@
-let mongoose = require('mongoose')
-const app = require('./app')
+require('dotenv').config();
+const app = require('./app');
+const { connectDB } = require('./db');
 
-mongoose.Promise = global.Promise
-mongoose.connect('mongodb://127.0.0.1:27017/semillerosdb')
-  .then(() => {
-    console.log('Base de datos semillerosdb conectada correctamente')
+connectDB();
 
-    app.listen(app.get('port'), () => {
-      console.log(`Servidor corriendo en http://localhost:${app.get('port')}`)
-    })
-  })
-  .catch(err => console.error(err))
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log(`API corriendo en el puerto ${PORT}`);
+});

@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "cb7dfb44-ebed-4993-8aeb-d56a6ab822e8",
+    "name": "Coleccion Brayan Y Miguel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58957776",
+    "_collection_link": "https://go.postman.co/collection/52797579-cb7dfb44-ebed-4993-8aeb-d56a6ab822e8?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "HU1 - Registrar estudiante",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Carlos\",\r\n  \"apellido\": \"Ramírez\",\r\n  \"correo_institucional\": \"carlos.ramirez@uniautonoma.edu.co\",\r\n  \"telefono\": \"3112223344\",\r\n  \"perfil_estudiante\": {\r\n    \"codigo_estudiantil\": \"20261003\",\r\n    \"programa_academico\": \"Ingeniería de Software\",\r\n    \"semestre_actual\": 6,\r\n    \"intereses_investigacion\": [\"Bases de Datos\"]\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/usuarios/estudiantes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "usuarios",
+            "estudiantes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU2 - Registrar docente",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Laura\",\r\n  \"apellido\": \"Gómez\",\r\n  \"correo_institucional\": \"laura.gomez@uniautonoma.edu.co\",\r\n  \"telefono\": \"3009998877\",\r\n  \"perfil_docente\": {\r\n    \"escalafon\": \"Asociado\",\r\n    \"departamento_facultad\": \"Ingeniería\",\r\n    \"horarios_asesoria\": [{ \"dia_semana\": \"Jueves\", \"hora_inicio\": \"14:00\", \"hora_fin\": \"16:00\", \"lugar\": \"Oficina 302\" }]\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/usuarios/docentes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "usuarios",
+            "docentes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU3 - Crear semillero",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nombre\": \"Semillero de Inteligencia Artificial\",\r\n  \"facultad\": \"Ingeniería\",\r\n  \"id_docente_lider\": \"6acfb157b5b663ad5db5d605\",\r\n  \"area_estudiada\": { \"nombre\": \"Inteligencia Artificial\", \"descripcion\": \"Machine Learning\" },\r\n  \"lineas_investigacion\": [{ \"nombre\": \"Visión\", \"descripcion\": \"Procesamiento de imágenes\" }]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/semilleros",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "semilleros"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU4 - Publicar capacitación",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titulo\": \"Taller de MongoDB\",\r\n  \"contenido\": \"Introducción a bases de datos NoSQL\",\r\n  \"tipo\": \"capacitacion\",\r\n  \"id_semillero_organizador\": \"6acfb1b5b5b663ad5db5d607\",\r\n  \"detalles_capacitacion\": {\r\n    \"tematica\": \"Bases de Datos\",\r\n    \"instructor\": \"Laura Gómez\",\r\n    \"cupo_maximo\": 20\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/publicaciones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "publicaciones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU5 - Cambiar docente lider",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"nuevo_id_docente_lider\": \"6acf126da4628cf15375f677\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/semilleros/6acf126da4628cf15375f67a/cambiar-lider",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "semilleros",
+            "6acf126da4628cf15375f67a",
+            "cambiar-lider"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU6 - Consultar semilleros",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/semilleros/detalles?facultad=ingenieria",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "semilleros",
+            "detalles"
+          ],
+          "query": [
+            {
+              "key": "facultad",
+              "value": "ingenieria",
+              "sortOrder": 0
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU7 - Registrar proyecto",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text",
+            "id": 0
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titulo\": \"Sistema de control en torneos\",\r\n  \"descripcion_general\": \"Plataforma para validar en tiempo real la elegibilidad de los jugadores y demas\",\r\n  \"objetivos\": [\r\n    \"Manejar la participacion de jugadores\",\r\n    \"Historial de faltas\",\r\n    \"Centralizar cosas\"\r\n  ],\r\n  \"tipo_proyecto\": \"Investigación aplicada\",\r\n  \"estado\": \"En ejecución\",\r\n  \"id_docente_asesor\": \"6acf126da4628cf15375f676\",\r\n  \"integrantes_participacion\": [\r\n    {\r\n      \"id_usuario\": \"6acf126da4628cf15375f678\",\r\n      \"rol_en_proyecto\": \"Lider de desarrollo\",\r\n      \"participacion\": true\r\n    },\r\n    {\r\n      \"id_usuario\": \"6acf126da4628cf15375f679\",\r\n      \"rol_en_proyecto\": \"Desarrollador backend\",\r\n      \"participacion\": true\r\n    }\r\n  ],\r\n  \"articulacion_interdisciplinar\": {\r\n    \"semilleros_involucrados\": [\r\n      \"6acf126da4628cf15375f67a\"\r\n    ],\r\n    \"descripcion_colaboracion\": \"Desarrollo de la API e integración con mongo\",\r\n    \"convenio_acuerdo\": \"Acuerdo de investigacion interna\"\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "text"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/proyectos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "proyectos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU8 - Publicar capacitación",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"titulo\": \"Taller práctico de Node.js, express y mongo\",\r\n  \"contenido\": \"Capacitación sobre diseño e implementación de APIs, modelado de colecciones en mongo y consultas\",\r\n  \"tipo\": \"capacitacion\",\r\n  \"id_semillero_organizador\": \"6acf126da4628cf15375f67a\",\r\n  \"detalles_capacitacion\": {\r\n    \"tematica\": \"Desarrollo backend y api\",\r\n    \"instructor\": \"Diego Fernando Prado Osorio\",\r\n    \"fecha_hora_inicio\": \"2026-10-25T14:00:00.000Z\",\r\n    \"fecha_hora_fin\": \"2026-10-25T17:00:00.000Z\",\r\n    \"enlace_reunion_lugar\": \"salon 503\",\r\n    \"cupo_maximo\": 15\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/publicaciones",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "publicaciones"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU9 - Inscribir estudiante",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"id_usuario\": \"6acfc405c86cbe7cf0e64c03\" }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/publicaciones/6acf126da4628cf15375f67e/inscribir",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "publicaciones",
+            "6acf126da4628cf15375f67e",
+            "inscribir"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "HU10 - Reporte docentes",
+      "request": {
+        "auth": {
+          "type": "inherit"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/reportes/carga-docentes",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "reportes",
+            "carga-docentes"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
