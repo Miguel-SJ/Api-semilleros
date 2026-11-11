@@ -55,6 +55,12 @@ const controller = {
     }
   },
 
+  listar: function (req, res) {
+    Usuario.find({}, '-password')
+      .then(u => res.status(200).json(u))
+      .catch(err => res.status(500).send({ message: `Error al listar usuarios: ${err}` }));
+  },
+
   login: async function (req, res) {
     try {
       const { correo_institucional, password } = req.body;
@@ -71,8 +77,16 @@ const controller = {
         usuario.password = await bcrypt.hash(password, salt);
         await usuario.save();
       } else {
-        const isMatch = await bcrypt.compare(password, usuario.password);
-        if (!isMatch) return res.status(400).send({ message: 'Contraseña incorrecta' });
+        const esHash = /^\$2[aby]\$\d{2}\$.{53}$/.test(usuario.password);
+        if (!esHash) {
+          if (usuario.password !== password) return res.status(400).send({ message: 'Contraseña incorrecta' });
+          usuario.password = password;
+          usuario.markModified('password');
+          await usuario.save();
+        } else {
+          const isMatch = await bcrypt.compare(password, usuario.password);
+          if (!isMatch) return res.status(400).send({ message: 'Contraseña incorrecta' });
+        }
       }
 
       const token = jwt.sign(

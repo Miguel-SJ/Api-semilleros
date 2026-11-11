@@ -3,6 +3,7 @@ const PublicacionController = require('../controllers/publicacion')
 
 const router = Router()
 
+router.get('/', PublicacionController.listar)
 router.post('/', PublicacionController.publicarEvento)
 router.put('/:id/inscribir', PublicacionController.inscribirEstudiante)
 

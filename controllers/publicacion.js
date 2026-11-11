@@ -1,6 +1,12 @@
 let Publicacion = require('../models/publicacion')
 
 const controller = {
+  listar: function (req, res) {
+    Publicacion.find().populate('id_semillero_organizador', 'nombre').sort({ fecha_publicacion: -1 })
+      .then(l => res.status(200).json(l))
+      .catch(err => res.status(500).send({ message: `Error al listar: ${err}` }));
+  },
+
   publicarEvento: function (req, res) {
     let publicacion = new Publicacion()
     const { titulo, contenido, tipo, id_semillero_organizador, detalles_capacitacion } = req.body

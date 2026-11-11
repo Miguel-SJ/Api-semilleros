@@ -34,11 +34,14 @@ let UsuarioSchema = Schema({
   }
 }, { timestamps: true })
 
-UsuarioSchema.pre('save', async function(next) {
-    if (!this.isModified('password')) return next();
+UsuarioSchema.pre('save', async function () {
+    if (!this.isModified('password') || !this.password) return;
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-    next();
+});
+
+UsuarioSchema.set('toJSON', {
+    transform: (doc, ret) => { delete ret.password; return ret; }
 });
 
 module.exports = mongoose.model('Usuario', UsuarioSchema, 'usuarios')
