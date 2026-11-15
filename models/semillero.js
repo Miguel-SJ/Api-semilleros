@@ -17,6 +17,11 @@ let SemilleroSchema = Schema({
     descripcion: String
   },
 
+  integrantes: [{
+    id_usuario: { type: Schema.Types.ObjectId, ref: 'Usuario', required: true },
+    fecha_vinculacion: { type: Date, default: Date.now }
+  }],
+
   lineas_investigacion: [{
     nombre: String,
     descripcion: String

@@ -61,6 +61,19 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error al listar usuarios: ${err}` }));
   },
 
+  // PATCH /:id/estado { estado: true|false } -> solo administrador
+  cambiarEstado: function (req, res) {
+    const { estado } = req.body;
+    if (typeof estado !== 'boolean') return res.status(400).send({ message: 'estado debe ser true o false' });
+    if (req.params.id === req.user.id) return res.status(400).send({ message: 'No puedes suspender tu propia cuenta' });
+    Usuario.findByIdAndUpdate(req.params.id, { estado }, { returnDocument: 'after' })
+      .then(u => {
+        if (!u) return res.status(404).send({ message: 'Usuario no encontrado' });
+        return res.status(200).json(u);
+      })
+      .catch(err => res.status(500).send({ message: `Error: ${err}` }));
+  },
+
   login: async function (req, res) {
     try {
       const { correo_institucional, password } = req.body;
@@ -71,6 +84,7 @@ const controller = {
 
       const usuario = await Usuario.findOne({ correo_institucional });
       if (!usuario) return res.status(404).send({ message: 'Usuario no encontrado' });
+      if (usuario.estado === false) return res.status(403).send({ message: 'Cuenta suspendida. Contacta al administrador' });
 
       if (!usuario.password) {
         const salt = await bcrypt.genSalt(10);

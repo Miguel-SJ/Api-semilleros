@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const usuarios_routes = require('./routes/usuario')
 const semilleros_routes = require('./routes/semillero')
 const proyectos_routes = require('./routes/proyecto')
@@ -9,8 +10,12 @@ const app = express()
 
 app.set('port', process.env.PORT || 3000)
 
+// CORS: permite que la web React (otro dominio) consuma la API. Authorization viaja en el header.
+app.use(cors({ origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*' }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.get('/', (req, res) => res.status(200).json({ message: 'API Semilleros activa' }))
 
 app.use('/api/usuarios', usuarios_routes)
 app.use('/api/semilleros', semilleros_routes)
