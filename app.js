@@ -10,7 +10,6 @@ const app = express()
 
 app.set('port', process.env.PORT || 3000)
 
-// CORS: permite que la web React (otro dominio) consuma la API. Authorization viaja en el header.
 app.use(cors({ origin: process.env.CORS_ORIGIN ? process.env.CORS_ORIGIN.split(',') : '*' }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

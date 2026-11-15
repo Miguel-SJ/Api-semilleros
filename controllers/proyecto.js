@@ -5,7 +5,6 @@ const escapar = (t) => String(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const ESTADOS = ['En Propuesta', 'En ejecucion', 'Finalizado', 'Cancelado']
 
 const controller = {
-  // GET /api/proyectos?q=&estado=&desde=YYYY-MM-DD&hasta=YYYY-MM-DD   (fechas sobre fecha_inicio)
   listar: function (req, res) {
     const { q, estado, desde, hasta } = req.query
     const filtro = {}
@@ -25,7 +24,6 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error al listar proyectos: ${err}` }))
   },
 
-  // PATCH /api/proyectos/:id/estado { estado }  -> docente asesor o administrador/coordinador
   cambiarEstado: function (req, res) {
     const { estado } = req.body
     if (!ESTADOS.includes(estado)) {
@@ -53,7 +51,14 @@ const controller = {
       return res.status(400).send({ message: "titulo, id_docente_asesor e integrantes_participacion son obligatorios" })
     }
 
-    let idsIntegrantes = integrantes_participacion.map(i => i.id_usuario)
+    let integrantes = []
+    const vistos = new Set()
+    const lista = [...integrantes_participacion]
+    if (req.user.rol === 'estudiante' && !lista.some(i => String(i.id_usuario) === req.user.id)) {
+      lista.unshift({ id_usuario: req.user.id, rol_en_proyecto: 'Líder de desarrollo', participacion: true })
+    }
+    lista.forEach(i => { if (i.id_usuario && !vistos.has(String(i.id_usuario))) { vistos.add(String(i.id_usuario)); integrantes.push(i) } })
+    let idsIntegrantes = integrantes.map(i => i.id_usuario)
 
     Usuario.find({ _id: { $in: idsIntegrantes } })
       .then(usuarios => {
@@ -65,7 +70,7 @@ const controller = {
         proyecto.descripcion_general = descripcion_general
         proyecto.objetivos = objetivos
         proyecto.id_docente_asesor = id_docente_asesor
-        proyecto.integrantes_participacion = integrantes_participacion
+        proyecto.integrantes_participacion = integrantes
         proyecto.tipo_proyecto = tipo_proyecto
         proyecto.articulacion_interdisciplinar = articulacion_interdisciplinar
 

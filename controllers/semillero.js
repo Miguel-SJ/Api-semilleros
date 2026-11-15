@@ -1,5 +1,7 @@
 let Semillero = require('../models/semillero')
 let Usuario = require('../models/usuario')
+let Proyecto = require('../models/proyecto')
+let Publicacion = require('../models/publicacion')
 
 const norm = (s) => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 const escapar = (s) => String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
@@ -28,7 +30,6 @@ const controller = {
 
   editarSemillero: function (req, res) {
     const update = { ...req.body }
-    delete update.integrantes // los integrantes se manejan solo con asociarme/desasociarme
     Semillero.findByIdAndUpdate(req.params.id, update, { returnDocument: 'after' })
       .then(updated => {
         if (!updated) return res.status(404).send({ message: "No se encontró el semillero" })
@@ -55,7 +56,6 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error interno: ${err}` }))
   },
 
-  // GET /detalles?facultad=&area=&linea=&q=   (q busca en semillero, docente líder, líneas, área e integrantes)
   obtenerDetallesSemilleros: function (req, res) {
     const filtro = {}
     const { facultad, area, linea, q } = req.query
@@ -98,7 +98,6 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error en la consulta: ${err}` }))
   },
 
-  // El estudiante sale del TOKEN (req.user), no del body
   asociarme: function (req, res) {
     if (req.user.rol !== 'estudiante') {
       return res.status(403).send({ message: "Solo los estudiantes pueden asociarse a un semillero" })
@@ -126,7 +125,21 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error: ${err}` }))
   },
 
-  // PATCH /:id/estado  { estado: true|false }  -> docente líder o administrador/coordinador
+  eliminarSemillero: function (req, res) {
+    const id = req.params.id
+    Proyecto.countDocuments({ 'articulacion_interdisciplinar.semilleros_involucrados': id })
+      .then(n => {
+        if (n > 0) { res.status(409).send({ message: `No se puede eliminar: tiene ${n} proyecto(s) asociado(s). Desactívalo en su lugar.` }); return null }
+        return Semillero.findByIdAndDelete(id).then(s => {
+          if (!s) { res.status(404).send({ message: "Semillero no encontrado" }); return null }
+          return Publicacion.deleteMany({ id_semillero_organizador: id }).then(r => {
+            res.status(200).json({ message: "Semillero eliminado", eventos_eliminados: r.deletedCount })
+          })
+        })
+      })
+      .catch(err => res.status(500).send({ message: `Error al eliminar: ${err}` }))
+  },
+
   cambiarEstado: function (req, res) {
     const { estado } = req.body
     if (typeof estado !== 'boolean') return res.status(400).send({ message: "estado debe ser true o false" })

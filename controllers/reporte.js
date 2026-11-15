@@ -3,7 +3,6 @@ let Semillero = require('../models/semillero')
 let Publicacion = require('../models/publicacion')
 let Usuario = require('../models/usuario')
 
-// Rango de fechas opcional: ?desde=YYYY-MM-DD&hasta=YYYY-MM-DD  (hora de Colombia)
 function rango(q) {
   const r = {}
   if (q.desde) r.$gte = new Date(`${q.desde}T00:00:00-05:00`)
@@ -12,7 +11,6 @@ function rango(q) {
 }
 
 const controller = {
-  // Carga de docentes = proyectos asesorados (filtrable por fecha_inicio del proyecto)
   generarReporteCargaDocentes: function (req, res) {
     const f = rango(req.query)
     const pipeline = []
@@ -36,7 +34,6 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error al generar el reporte: ${err}` }))
   },
 
-  // Resumen general para el dashboard de reportes
   resumen: async function (req, res) {
     try {
       const f = rango(req.query)

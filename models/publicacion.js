@@ -8,6 +8,8 @@ let PublicacionSchema = Schema({
   tipo: { type: String, default: 'capacitacion' },
   fecha_publicacion: { type: Date, default: Date.now },
   visibilidad_publica: { type: Boolean, default: true },
+  estado: { type: String, enum: ['Próximo', 'Finalizado', 'Cancelado'], default: 'Próximo' },
+  creado_por: { type: Schema.Types.ObjectId, ref: 'Usuario' },
 
   id_semillero_organizador: { type: Schema.Types.ObjectId, ref: 'Semillero', required: true },
 

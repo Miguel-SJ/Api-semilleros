@@ -61,7 +61,6 @@ const controller = {
       .catch(err => res.status(500).send({ message: `Error al listar usuarios: ${err}` }));
   },
 
-  // PATCH /:id/estado { estado: true|false } -> solo administrador
   cambiarEstado: function (req, res) {
     const { estado } = req.body;
     if (typeof estado !== 'boolean') return res.status(400).send({ message: 'estado debe ser true o false' });
